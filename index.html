@@ -1,61 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WG3437Q7");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Serrana Besio - Portfolio</title>
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WG3437Q7"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <header>
-        <div class="container">
-          <nav>
-            <a href="#" class="logo">SB</a>
-            <ul class="nav-links">
-              <li><a href="#proyectos">Proyectos</a></li>
-              <li><a href="#sobre-mi">Sobre mí</a></li>
-              <li><a href="#servicios">Servicios</a></li>
-              <li><a href="#contacto">Contacto</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      
-      <section id="hero">
-        <div class="container">
-          <div class="hero-content">
-            <h1 class="hero-title">BLABLA</h1>
-            <p class="subtitle">Diseñadora digital especializada en experiencias visuales minimalistas y funcionales.</p>
-            <div class="hero-btn">
-                <a href="#proyectos" class="btn">Ver proyectos</a>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section id="proyectos">
-        <div class="container">
-          <div class="proyectos-header">
-            <h2 class="proyectos-title">Proyectos</h2>
-            <p class="subtitle">Una selección de trabajos recientes</p>
-          </div>
-          <div class="proyectos-grid" id="proyectos-grid">
-            <!-- tarjetas de proyecto -->
-          </div>
-        </div>
-      </section>
-      
+      <div class="container">
+        <nav>
+          <a href="#" class="logo">SB</a>
+          <ul class="nav-links">
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
+    <section id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">BLABLA</h1>
+          <p class="subtitle">
+            Diseñadora digital especializada en experiencias visuales
+            minimalistas y funcionales.
+          </p>
+          <div class="hero-btn">
+            <a href="#proyectos" class="btn">Ver proyectos</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      
-      <div class="proyectos-grid" id="proyectos-grid">
-        <!-- Los proyectos se generarán dinámicamente con JavaScript -->
+    <section id="proyectos">
+      <div class="container">
+        <div class="proyectos-header">
+          <h2 class="proyectos-title">Proyectos</h2>
+          <p class="subtitle">Una selección de trabajos recientes</p>
+        </div>
+        <div class="proyectos-grid" id="proyectos-grid">
+          <!-- tarjetas de proyecto -->
+        </div>
+      </div>
+    </section>
+
+    <div class="proyectos-grid" id="proyectos-grid">
+      <!-- Los proyectos se generarán dinámicamente con JavaScript -->
     </div>
     <script src="js/utilidades.js"></script>
 
     <script src="js/proyectos.js"></script>
     <script src="js/detalle-proyectos.js"></script>
-
-</body>
+  </body>
 </html>

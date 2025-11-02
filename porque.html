@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Proposition Canvas - Serrana Besio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f8;
+            color: #111;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid #000;
+            border-radius: 1.5rem;
+        }
+        
+        .back-button:hover {
+            background: #000;
+            color: #fff;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #000;
+            line-height: 1.1;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+        }
+
+        /* Canvas Container */
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 4rem 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        /* Canvas Elements */
+        .canvas-element {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .canvas-element:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .canvas-element.active {
+            transform: scale(1.1);
+            z-index: 20;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Value Proposition (Square) */
+        .value-proposition {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            top: 150px;
+            left: 150px;
+        }
+
+        /* Customer Profile (Circle) */
+        .customer-profile {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 50%;
+            top: 160px;
+            right: 150px;
+        }
+
+        /* Sections inside Canvas */
+        .section {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 30;
+            max-width: 400px;
+        }
+
+        .section.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Section Positions */
+        .products-services {
+            top: 50px;
+            left: 500px;
+        }
+
+        .pain-relievers {
+            top: 200px;
+            right: 500px;
+        }
+
+        .gain-creators {
+            bottom: 100px;
+            left: 500px;
+        }
+
+        .customer-jobs {
+            top: 50px;
+            right: 500px;
+        }
+
+        .pains {
+            bottom: 100px;
+            right: 500px;
+        }
+
+        .gains {
+            bottom: 250px;
+            left: 500px;
+        }
+
+        /* Section Content */
+        .section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #000;
+            border-bottom: 2px solid;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .section.active .section-content {
+            max-height: 300px;
+        }
+
+        .section-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid;
+        }
+
+        .section-item p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Close Button */
+        .close-section {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close-section:hover {
+            color: #000;
+        }
+
+        /* Element Icons */
+        .element-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .element-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .element-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Instructions */
+        .instructions {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .canvas-container {
+                height: 500px;
+            }
+            
+            .value-proposition {
+                width: 250px;
+                height: 250px;
+                top: 125px;
+                left: 50px;
+            }
+            
+            .customer-profile {
+                width: 230px;
+                height: 230px;
+                top: 135px;
+                right: 50px;
+            }
+            
+            .section {
+                max-width: 300px;
+            }
+            
+            .products-services,
+            .customer-jobs {
+                top: 30px;
+            }
+            
+            .pain-relievers {
+                top: 150px;
+            }
+            
+            .gains {
+                bottom: 200px;
+            }
+            
+            .pains,
+            .gain-creators {
+                bottom: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .canvas-container {
+                height: 400px;
+            }
+            
+            .value-proposition {
+                width: 200px;
+                height: 200px;
+                top: 100px;
+                left: 30px;
+            }
+            
+            .customer-profile {
+                width: 180px;
+                height: 180px;
+                top: 110px;
+                right: 30px;
+            }
+            
+            .section {
+                padding: 1.5rem;
+                max-width: 250px;
+            }
+            
+            .section h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .canvas-container {
+                height: 300px;
+            }
+            
+            .value-proposition {
+                width: 150px;
+                height: 150px;
+                top: 75px;
+                left: 20px;
+            }
+            
+            .customer-profile {
+                width: 140px;
+                height: 140px;
+                top: 80px;
+                right: 20px;
+            }
+            
+            .element-icon {
+                font-size: 2rem;
+            }
+            
+            .element-title {
+                font-size: 1rem;
+            }
+            
+            .element-subtitle {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Volver al inicio</a>
+        
+        <h1>Value Proposition Canvas</h1>
+        <p class="page-subtitle">Haz clic en cada sección para descubrir cómo creo valor para tus proyectos digitales.</p>
+
+        <div class="canvas-container">
+            <!-- Value Proposition Square -->
+            <div class="canvas-element value-proposition" id="valueProposition">
+                <div class="element-icon">💎</div>
+                <div class="element-title">Mi Propuesta</div>
+                <div class="element-subtitle">Value Proposition</div>
+            </div>
+
+            <!-- Customer Profile Circle -->
+            <div class="canvas-element customer-profile" id="customerProfile">
+                <div class="element-icon">👥</div>
+                <div class="element-title">Tu Perfil</div>
+                <div class="element-subtitle">Customer Profile</div>
+            </div>
+
+            <!-- Sections -->
+            <div class="section products-services" id="productsServices">
+                <button class="close-section">×</button>
+                <h3 style="border-color: #667eea;">Productos y Servicios</h3>
+                <div class="section-content">
+                    <div class="section-item">
+                        <p>Portfolio online para visualizar proyectos y procesos de diseño</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Formulario de contacto directo para consultas o solicitudes</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Creación de sitios web funcionales y personalizados</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Diseño de identidad visual e imagen de marca completa</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section pain-relievers" id="painRelievers">
+                <button class="close-section">×</button>
+                <h3 style="border-color: #f5576c;">Pain Relievers</h3>
+                <div class="section-content">
+                    <div class="section-item">
+                        <p>Navegación simple e intuitiva que facilita la exploración</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Explicación clara y accesible de servicios y procesos</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Muestra de trabajos realizados que genera confianza</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section gain-creators" id="gainCreators">
+                <button class="close-section">×</button>
+                <h3 style="border-color: #764ba2;">Gain Creators</h3>
+                <div class="section-content">
+                    <div class="section-item">
+                        <p>Facilitar la toma de decisiones con resultados visuales atractivos</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Experiencia que refleja cómo sería trabajar conmigo</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Contacto fácil que acelera el inicio de colaboraciones</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section customer-jobs" id="customerJobs">
+                <button class="close-section">×</button>
+                <h3 style="border-color: #f093fb;">Customer Jobs</h3>
+                <div class="section-content">
+                    <div class="section-item">
+                        <p>Encontrar un diseñador confiable con estilo acorde a su marca</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Contratar para crear sitio web o identidad visual funcional</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section pains" id="pains">
+                <button class="close-section">×</button>
+                <h3 style="border-color: #f5576c;">Pains</h3>
+                <div class="section-content">
+                    <div class="section-item">
+                        <p>No entender contenidos del sitio o habilidades técnicas</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Perder tiempo buscando a la persona adecuada</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Falta de claridad en información o procesos</p>
+                    </div>
+                    <div class="section-item">
+                        <p>No tener referencia de precios o alcance</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section gains" id="gains">
+                <button class="close-section">×</button>
+                <h3 style="border-color: #764ba2;">Gains</h3>
+                <div class="section-content">
+                    <div class="section-item">
+                        <p>Obtener sitio web funcional y estéticamente atractivo</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Mejorar presencia digital y valor percibido de marca</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Sentir confianza en el proceso de diseño</p>
+                    </div>
+                    <div class="section-item">
+                        <p>Experiencia simple, humana y eficaz al contratar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            💡 Haz clic en el cuadrado o círculo, luego en cada sección para explorar el canvas
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const valueProposition = document.getElementById('valueProposition');
+            const customerProfile = document.getElementById('customerProfile');
+            const sections = document.querySelectorAll('.section');
+            const closeButtons = document.querySelectorAll('.close-section');
+
+            let activeElement = null;
+
+            // Value Proposition click
+            valueProposition.addEventListener('click', function() {
+                if (activeElement === 'value') {
+                    hideAllSections();
+                    activeElement = null;
+                    valueProposition.classList.remove('active');
+                } else {
+                    hideAllSections();
+                    activeElement = 'value';
+                    valueProposition.classList.add('active');
+                    customerProfile.classList.remove('active');
+                    
+                    // Show value proposition sections
+                    document.getElementById('productsServices').classList.add('active');
+                    document.getElementById('painRelievers').classList.add('active');
+                    document.getElementById('gainCreators').classList.add('active');
+                }
+            });
+
+            // Customer Profile click
+            customerProfile.addEventListener('click', function() {
+                if (activeElement === 'customer') {
+                    hideAllSections();
+                    activeElement = null;
+                    customerProfile.classList.remove('active');
+                } else {
+                    hideAllSections();
+                    activeElement = 'customer';
+                    customerProfile.classList.add('active');
+                    valueProposition.classList.remove('active');
+                    
+                    // Show customer profile sections
+                    document.getElementById('customerJobs').classList.add('active');
+                    document.getElementById('pains').classList.add('active');
+                    document.getElementById('gains').classList.add('active');
+                }
+            });
+
+            // Close buttons
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    hideAllSections();
+                    valueProposition.classList.remove('active');
+                    customerProfile.classList.remove('active');
+                    activeElement = null;
+                });
+            });
+
+            // Close sections when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.canvas-element') && !e.target.closest('.section')) {
+                    hideAllSections();
+                    valueProposition.classList.remove('active');
+                    customerProfile.classList.remove('active');
+                    activeElement = null;
+                }
+            });
+
+            function hideAllSections() {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+            }
+
+            // Prevent section clicks from bubbling to canvas
+            sections.forEach(section => {
+                section.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

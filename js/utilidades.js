@@ -144,3 +144,87 @@ document.addEventListener('DOMContentLoaded', function() {
         manejarScrollHeader();
     }
 });
+
+
+// Funcionalidad del acordeón - múltiples items pueden estar abiertos
+document.addEventListener('DOMContentLoaded', function() {
+    const accordionItems = document.querySelectorAll('.method-accordion-item');
+    
+    accordionItems.forEach(item => {
+        const button = item.querySelector('.method-accordion-button');
+        
+        button.addEventListener('click', function() {
+            // Solo alternar el item actual, no cerrar los demás
+            item.classList.toggle('active');
+            
+            // Actualizar atributos ARIA para accesibilidad
+            const isExpanded = item.classList.contains('active');
+            button.setAttribute('aria-expanded', isExpanded);
+            const content = item.querySelector('.method-accordion-content');
+            content.setAttribute('aria-hidden', !isExpanded);
+        });
+    });
+    
+    // Inicializar atributos ARIA
+    accordionItems.forEach(item => {
+        const button = item.querySelector('.method-accordion-button');
+        const content = item.querySelector('.method-accordion-content');
+        
+        button.setAttribute('aria-expanded', 'false');
+        content.setAttribute('aria-hidden', 'true');
+    });
+});
+
+
+
+
+// Mejoras de UX para el formulario
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.contact-form');
+    
+    if (form) {
+        // Efecto de focus en los campos
+        const inputs = form.querySelectorAll('.form-input, .form-textarea, .form-select');
+        
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+        
+        // Validación básica del email/teléfono
+        const contactoInput = document.getElementById('contacto');
+        
+        contactoInput.addEventListener('blur', function() {
+            const value = this.value.trim();
+            if (value) {
+                const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                const isPhone = /^[\+]?[0-9\s\-\(\)]{8,}$/.test(value);
+                
+                if (!isEmail && !isPhone) {
+                    this.style.borderColor = '#dc3545';
+                } else {
+                    this.style.borderColor = '';
+                }
+            }
+        });
+        
+        // Manejo del envío del formulario
+        form.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Enviando...';
+            
+            // Netlify maneja el envío automáticamente
+            // Esta parte es solo para feedback visual
+        });
+    }
+});
+
+

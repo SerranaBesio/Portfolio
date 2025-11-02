@@ -178,53 +178,59 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// Mejoras de UX para el formulario
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.contact-form');
-    
-    if (form) {
-        // Efecto de focus en los campos
-        const inputs = form.querySelectorAll('.form-input, .form-textarea, .form-select');
-        
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', function() {
-                if (this.value === '') {
-                    this.parentElement.classList.remove('focused');
-                }
-            });
-        });
-        
-        // Validación básica del email/teléfono
-        const contactoInput = document.getElementById('contacto');
-        
-        contactoInput.addEventListener('blur', function() {
-            const value = this.value.trim();
-            if (value) {
-                const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-                const isPhone = /^[\+]?[0-9\s\-\(\)]{8,}$/.test(value);
-                
-                if (!isEmail && !isPhone) {
-                    this.style.borderColor = '#dc3545';
-                } else {
-                    this.style.borderColor = '';
-                }
-            }
-        });
-        
-        // Manejo del envío del formulario
-        form.addEventListener('submit', function(e) {
-            const submitBtn = this.querySelector('.submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Enviando...';
-            
-            // Netlify maneja el envío automáticamente
-            // Esta parte es solo para feedback visual
-        });
-    }
-});
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.contact-form');
+
+  if (form) {
+    // --- Efecto de focus en los campos ---
+    const inputs = form.querySelectorAll('.form-input, .form-textarea, .form-select');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.classList.add('focused');
+      });
+      input.addEventListener('blur', function() {
+        if (this.value === '') this.parentElement.classList.remove('focused');
+      });
+    });
+
+    // --- Validación básica de email ---
+    const emailInput = form.querySelector('#email');
+    emailInput.addEventListener('blur', function() {
+      const value = this.value.trim();
+      if (value) {
+        const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        this.style.borderColor = isEmail ? '' : '#dc3545';
+      }
+    });
+
+    // --- Manejo del envío ---
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const submitBtn = this.querySelector('.submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Enviando...';
+
+      const formData = new FormData(form);
+
+      fetch("/", { method: "POST", body: formData })
+        .then(() => {
+          form.querySelector(".form-success").style.display = "block";
+          form.querySelector(".form-error").style.display = "none";
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Enviar';
+        })
+        .catch(() => {
+          form.querySelector(".form-error").style.display = "block";
+          form.querySelector(".form-success").style.display = "none";
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Enviar';
+        });
+    });
+  }
+});
 

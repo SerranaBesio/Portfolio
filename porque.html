@@ -32,7 +32,7 @@
             text-decoration: none;
             margin-bottom: 3rem;
             font-weight: 500;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border: 1px solid #000;
             border-radius: 1.5rem;
@@ -58,182 +58,176 @@
             max-width: 600px;
         }
 
-        /* Canvas Container */
-        .canvas-container {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            margin: 4rem 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
+        /* Canvas Layout */
+        .canvas-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
         }
 
-        /* Canvas Elements */
-        .canvas-element {
-            position: absolute;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .canvas-side {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            gap: 2rem;
+        }
+
+        .canvas-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
             text-align: center;
-            padding: 1.5rem;
+            color: #000;
         }
 
-        .canvas-element:hover {
-            transform: scale(1.05);
-            z-index: 10;
+        /* Icon Grid */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
         }
 
-        .canvas-element.active {
-            transform: scale(1.1);
-            z-index: 20;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Value Proposition (Square) */
-        .value-proposition {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 20px;
-            top: 150px;
-            left: 150px;
-        }
-
-        /* Customer Profile (Circle) */
-        .customer-profile {
-            width: 280px;
-            height: 280px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border-radius: 50%;
-            top: 160px;
-            right: 150px;
-        }
-
-        /* Sections inside Canvas */
-        .section {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.95);
+        .icon-item {
+            background: white;
             border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .icon-item.active {
+            transform: translateY(-5px);
+            border-color: currentColor;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-item:hover .icon {
+            transform: scale(1.1);
+        }
+
+        .icon-item.active .icon {
+            transform: scale(1.2);
+        }
+
+        .icon-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Content Panel */
+        .content-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            min-height: 400px;
             opacity: 0;
             visibility: hidden;
+            transform: translateY(20px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 30;
-            max-width: 400px;
+            position: absolute;
+            width: calc(100% - 4rem);
+            max-width: 800px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 100;
         }
 
-        .section.active {
+        .content-panel.active {
             opacity: 1;
             visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
 
-        /* Section Positions */
-        .products-services {
-            top: 50px;
-            left: 500px;
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid;
         }
 
-        .pain-relievers {
-            top: 200px;
-            right: 500px;
+        .panel-icon {
+            font-size: 2rem;
         }
 
-        .gain-creators {
-            bottom: 100px;
-            left: 500px;
-        }
-
-        .customer-jobs {
-            top: 50px;
-            right: 500px;
-        }
-
-        .pains {
-            bottom: 100px;
-            right: 500px;
-        }
-
-        .gains {
-            bottom: 250px;
-            left: 500px;
-        }
-
-        /* Section Content */
-        .section h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .panel-title {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #000;
-            border-bottom: 2px solid;
-            padding-bottom: 0.5rem;
         }
 
-        .section-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
+        .panel-content {
+            display: grid;
+            gap: 1.5rem;
         }
 
-        .section.active .section-content {
-            max-height: 300px;
-        }
-
-        .section-item {
-            margin-bottom: 1rem;
-            padding: 0.75rem;
+        .content-item {
+            padding: 1.5rem;
             background: rgba(0, 0, 0, 0.03);
             border-radius: 8px;
-            border-left: 3px solid;
+            border-left: 4px solid;
+            transition: transform 0.3s ease;
         }
 
-        .section-item p {
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .content-item:hover {
+            transform: translateX(5px);
+        }
+
+        .content-item p {
+            font-size: 1rem;
+            line-height: 1.6;
             color: #666;
+            margin: 0;
         }
 
-        /* Close Button */
-        .close-section {
+        .close-panel {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             color: #666;
             transition: color 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .close-section:hover {
+        .close-panel:hover {
+            background: rgba(0, 0, 0, 0.05);
             color: #000;
         }
 
-        /* Element Icons */
-        .element-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .element-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .element-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
+        /* Color Themes */
+        .value-proposition { color: #667eea; border-color: #667eea; }
+        .customer-profile { color: #f093fb; border-color: #f093fb; }
+        .gains { color: #4fd1c7; border-color: #4fd1c7; }
+        .products-services { color: #fc8181; border-color: #fc8181; }
+        .pain-relievers { color: #f6ad55; border-color: #f6ad55; }
+        .customer-jobs { color: #68d391; border-color: #68d391; }
+        .pains { color: #f687b3; border-color: #f687b3; }
 
         /* Instructions */
         .instructions {
@@ -241,48 +235,38 @@
             margin-top: 2rem;
             color: #666;
             font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .canvas-container {
-                height: 500px;
+            .canvas-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            
-            .value-proposition {
-                width: 250px;
-                height: 250px;
-                top: 125px;
-                left: 50px;
-            }
-            
-            .customer-profile {
-                width: 230px;
-                height: 230px;
-                top: 135px;
-                right: 50px;
-            }
-            
-            .section {
-                max-width: 300px;
-            }
-            
-            .products-services,
-            .customer-jobs {
-                top: 30px;
-            }
-            
-            .pain-relievers {
-                top: 150px;
-            }
-            
-            .gains {
-                bottom: 200px;
-            }
-            
-            .pains,
-            .gain-creators {
-                bottom: 80px;
+
+            .content-panel {
+                width: calc(100% - 2rem);
             }
         }
 
@@ -295,31 +279,16 @@
                 font-size: 2.5rem;
             }
             
-            .canvas-container {
-                height: 400px;
+            .icon-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .value-proposition {
-                width: 200px;
-                height: 200px;
-                top: 100px;
-                left: 30px;
+            .content-panel {
+                padding: 2rem 1.5rem;
             }
             
-            .customer-profile {
-                width: 180px;
-                height: 180px;
-                top: 110px;
-                right: 30px;
-            }
-            
-            .section {
-                padding: 1.5rem;
-                max-width: 250px;
-            }
-            
-            .section h3 {
-                font-size: 1.1rem;
+            .panel-title {
+                font-size: 1.5rem;
             }
         }
 
@@ -332,34 +301,16 @@
                 font-size: 1rem;
             }
             
-            .canvas-container {
-                height: 300px;
+            .icon-grid {
+                grid-template-columns: 1fr;
             }
             
-            .value-proposition {
-                width: 150px;
-                height: 150px;
-                top: 75px;
-                left: 20px;
+            .icon-item {
+                padding: 1.25rem;
             }
             
-            .customer-profile {
-                width: 140px;
-                height: 140px;
-                top: 80px;
-                right: 20px;
-            }
-            
-            .element-icon {
+            .icon {
                 font-size: 2rem;
-            }
-            
-            .element-title {
-                font-size: 1rem;
-            }
-            
-            .element-subtitle {
-                font-size: 0.8rem;
             }
         }
     </style>
@@ -369,212 +320,290 @@
         <a href="index.html" class="back-button">← Volver al inicio</a>
         
         <h1>Value Proposition Canvas</h1>
-        <p class="page-subtitle">Haz clic en cada sección para descubrir cómo creo valor para tus proyectos digitales.</p>
+        <p class="page-subtitle">Explora cada elemento del canvas para entender cómo creo valor para tus proyectos.</p>
 
-        <div class="canvas-container">
-            <!-- Value Proposition Square -->
-            <div class="canvas-element value-proposition" id="valueProposition">
-                <div class="element-icon">💎</div>
-                <div class="element-title">Mi Propuesta</div>
-                <div class="element-subtitle">Value Proposition</div>
-            </div>
-
-            <!-- Customer Profile Circle -->
-            <div class="canvas-element customer-profile" id="customerProfile">
-                <div class="element-icon">👥</div>
-                <div class="element-title">Tu Perfil</div>
-                <div class="element-subtitle">Customer Profile</div>
-            </div>
-
-            <!-- Sections -->
-            <div class="section products-services" id="productsServices">
-                <button class="close-section">×</button>
-                <h3 style="border-color: #667eea;">Productos y Servicios</h3>
-                <div class="section-content">
-                    <div class="section-item">
-                        <p>Portfolio online para visualizar proyectos y procesos de diseño</p>
+        <div class="canvas-layout">
+            <!-- Value Proposition Side -->
+            <div class="canvas-side">
+                <h2 class="canvas-title">Value Proposition</h2>
+                <div class="icon-grid">
+                    <div class="icon-item value-proposition" data-target="valueProposition">
+                        <div class="icon">💎</div>
+                        <div class="icon-label">Value Proposition</div>
                     </div>
-                    <div class="section-item">
-                        <p>Formulario de contacto directo para consultas o solicitudes</p>
+                    
+                    <div class="icon-item gains" data-target="gains">
+                        <div class="icon">🚀</div>
+                        <div class="icon-label">Gains</div>
                     </div>
-                    <div class="section-item">
-                        <p>Creación de sitios web funcionales y personalizados</p>
+                    
+                    <div class="icon-item products-services" data-target="productsServices">
+                        <div class="icon">🛠️</div>
+                        <div class="icon-label">Products & Services</div>
                     </div>
-                    <div class="section-item">
-                        <p>Diseño de identidad visual e imagen de marca completa</p>
+                    
+                    <div class="icon-item pain-relievers" data-target="painRelievers">
+                        <div class="icon">🛡️</div>
+                        <div class="icon-label">Pain Relievers</div>
                     </div>
                 </div>
             </div>
 
-            <div class="section pain-relievers" id="painRelievers">
-                <button class="close-section">×</button>
-                <h3 style="border-color: #f5576c;">Pain Relievers</h3>
-                <div class="section-content">
-                    <div class="section-item">
-                        <p>Navegación simple e intuitiva que facilita la exploración</p>
+            <!-- Customer Profile Side -->
+            <div class="canvas-side">
+                <h2 class="canvas-title">Customer Profile</h2>
+                <div class="icon-grid">
+                    <div class="icon-item customer-profile" data-target="customerProfile">
+                        <div class="icon">👥</div>
+                        <div class="icon-label">Customer Profile</div>
                     </div>
-                    <div class="section-item">
-                        <p>Explicación clara y accesible de servicios y procesos</p>
+                    
+                    <div class="icon-item customer-jobs" data-target="customerJobs">
+                        <div class="icon">🎯</div>
+                        <div class="icon-label">Customer Jobs</div>
                     </div>
-                    <div class="section-item">
-                        <p>Muestra de trabajos realizados que genera confianza</p>
+                    
+                    <div class="icon-item pains" data-target="pains">
+                        <div class="icon">😥</div>
+                        <div class="icon-label">Pains</div>
                     </div>
-                </div>
-            </div>
-
-            <div class="section gain-creators" id="gainCreators">
-                <button class="close-section">×</button>
-                <h3 style="border-color: #764ba2;">Gain Creators</h3>
-                <div class="section-content">
-                    <div class="section-item">
-                        <p>Facilitar la toma de decisiones con resultados visuales atractivos</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Experiencia que refleja cómo sería trabajar conmigo</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Contacto fácil que acelera el inicio de colaboraciones</p>
+                    
+                    <div class="icon-item gains" data-target="customerGains">
+                        <div class="icon">⭐</div>
+                        <div class="icon-label">Gains</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="section customer-jobs" id="customerJobs">
-                <button class="close-section">×</button>
-                <h3 style="border-color: #f093fb;">Customer Jobs</h3>
-                <div class="section-content">
-                    <div class="section-item">
-                        <p>Encontrar un diseñador confiable con estilo acorde a su marca</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Contratar para crear sitio web o identidad visual funcional</p>
-                    </div>
+        <!-- Content Panels -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Value Proposition Panel -->
+        <div class="content-panel value-proposition" id="valuePropositionPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">💎</div>
+                <h2 class="panel-title">Value Proposition</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Creo experiencias digitales minimalistas y funcionales que conectan marcas con su audiencia</p>
+                </div>
+                <div class="content-item">
+                    <p>Combino estética moderna con usabilidad para generar resultados tangibles</p>
+                </div>
+                <div class="content-item">
+                    <p>Enfoque centrado en el usuario que prioriza la experiencia y la conversión</p>
                 </div>
             </div>
+        </div>
 
-            <div class="section pains" id="pains">
-                <button class="close-section">×</button>
-                <h3 style="border-color: #f5576c;">Pains</h3>
-                <div class="section-content">
-                    <div class="section-item">
-                        <p>No entender contenidos del sitio o habilidades técnicas</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Perder tiempo buscando a la persona adecuada</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Falta de claridad en información o procesos</p>
-                    </div>
-                    <div class="section-item">
-                        <p>No tener referencia de precios o alcance</p>
-                    </div>
+        <!-- Gains Panel -->
+        <div class="content-panel gains" id="gainsPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">🚀</div>
+                <h2 class="panel-title">Gain Creators</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Facilitar la toma de decisiones con resultados visuales atractivos y claros</p>
+                </div>
+                <div class="content-item">
+                    <p>Ofrecer una experiencia que refleja organización, claridad y estética aplicada</p>
+                </div>
+                <div class="content-item">
+                    <p>Contacto fácil que acelera el inicio de colaboraciones productivas</p>
                 </div>
             </div>
+        </div>
 
-            <div class="section gains" id="gains">
-                <button class="close-section">×</button>
-                <h3 style="border-color: #764ba2;">Gains</h3>
-                <div class="section-content">
-                    <div class="section-item">
-                        <p>Obtener sitio web funcional y estéticamente atractivo</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Mejorar presencia digital y valor percibido de marca</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Sentir confianza en el proceso de diseño</p>
-                    </div>
-                    <div class="section-item">
-                        <p>Experiencia simple, humana y eficaz al contratar</p>
-                    </div>
+        <!-- Products & Services Panel -->
+        <div class="content-panel products-services" id="productsServicesPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">🛠️</div>
+                <h2 class="panel-title">Products & Services</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Portfolio online para visualizar proyectos y procesos de diseño</p>
+                </div>
+                <div class="content-item">
+                    <p>Formulario de contacto directo para consultas o solicitudes de trabajo</p>
+                </div>
+                <div class="content-item">
+                    <p>Creación de sitios web funcionales y personalizados</p>
+                </div>
+                <div class="content-item">
+                    <p>Diseño de identidad visual e imagen de marca completa</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pain Relievers Panel -->
+        <div class="content-panel pain-relievers" id="painRelieversPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">🛡️</div>
+                <h2 class="panel-title">Pain Relievers</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Navegación simple e intuitiva que facilita la exploración del portfolio</p>
+                </div>
+                <div class="content-item">
+                    <p>Explicación clara y accesible de servicios, habilidades y procesos</p>
+                </div>
+                <div class="content-item">
+                    <p>Muestra de trabajos realizados que genera confianza y seguridad</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Profile Panel -->
+        <div class="content-panel customer-profile" id="customerProfilePanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">👥</div>
+                <h2 class="panel-title">Customer Profile</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Emprendedores y pequeñas empresas que buscan mejorar su presencia digital</p>
+                </div>
+                <div class="content-item">
+                    <p>Profesionales que necesitan un sitio web o identidad visual profesional</p>
+                </div>
+                <div class="content-item">
+                    <p>Clientes que valoran el diseño limpio, funcional y efectivo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Jobs Panel -->
+        <div class="content-panel customer-jobs" id="customerJobsPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">🎯</div>
+                <h2 class="panel-title">Customer Jobs</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Encontrar un diseñador confiable con estilo acorde a su marca o emprendimiento</p>
+                </div>
+                <div class="content-item">
+                    <p>Contratar a alguien que pueda crear un sitio web o identidad visual funcional y atractiva</p>
+                </div>
+                <div class="content-item">
+                    <p>Mejorar la presencia digital de manera profesional y efectiva</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pains Panel -->
+        <div class="content-panel pains" id="painsPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">😥</div>
+                <h2 class="panel-title">Pains</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>No entender los contenidos del sitio o las habilidades técnicas del diseñador</p>
+                </div>
+                <div class="content-item">
+                    <p>Perder tiempo buscando a la persona adecuada para el proyecto</p>
+                </div>
+                <div class="content-item">
+                    <p>Falta de claridad en la información o procesos de trabajo</p>
+                </div>
+                <div class="content-item">
+                    <p>No tener referencia de precios o alcance de servicios</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Gains Panel -->
+        <div class="content-panel gains" id="customerGainsPanel">
+            <button class="close-panel">×</button>
+            <div class="panel-header">
+                <div class="panel-icon">⭐</div>
+                <h2 class="panel-title">Customer Gains</h2>
+            </div>
+            <div class="panel-content">
+                <div class="content-item">
+                    <p>Obtener un sitio web funcional y estéticamente atractivo</p>
+                </div>
+                <div class="content-item">
+                    <p>Mejorar la presencia digital y el valor percibido de su marca</p>
+                </div>
+                <div class="content-item">
+                    <p>Sentir confianza en el proceso de diseño y comunicación</p>
+                </div>
+                <div class="content-item">
+                    <p>Encontrar una experiencia simple, humana y eficaz al contratar</p>
                 </div>
             </div>
         </div>
 
         <div class="instructions">
-            💡 Haz clic en el cuadrado o círculo, luego en cada sección para explorar el canvas
+            💡 Haz clic en cualquier icono para explorar su contenido
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const valueProposition = document.getElementById('valueProposition');
-            const customerProfile = document.getElementById('customerProfile');
-            const sections = document.querySelectorAll('.section');
-            const closeButtons = document.querySelectorAll('.close-section');
+            const iconItems = document.querySelectorAll('.icon-item');
+            const panels = document.querySelectorAll('.content-panel');
+            const closeButtons = document.querySelectorAll('.close-panel');
+            const overlay = document.getElementById('overlay');
 
-            let activeElement = null;
-
-            // Value Proposition click
-            valueProposition.addEventListener('click', function() {
-                if (activeElement === 'value') {
-                    hideAllSections();
-                    activeElement = null;
-                    valueProposition.classList.remove('active');
-                } else {
-                    hideAllSections();
-                    activeElement = 'value';
-                    valueProposition.classList.add('active');
-                    customerProfile.classList.remove('active');
+            // Icon click handler
+            iconItems.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
                     
-                    // Show value proposition sections
-                    document.getElementById('productsServices').classList.add('active');
-                    document.getElementById('painRelievers').classList.add('active');
-                    document.getElementById('gainCreators').classList.add('active');
-                }
+                    // Remove active class from all icons and panels
+                    iconItems.forEach(item => item.classList.remove('active'));
+                    panels.forEach(panel => panel.classList.remove('active'));
+                    
+                    // Add active class to clicked icon and corresponding panel
+                    this.classList.add('active');
+                    document.getElementById(target + 'Panel').classList.add('active');
+                    overlay.classList.add('active');
+                    
+                    // Prevent body scroll
+                    document.body.style.overflow = 'hidden';
+                });
             });
 
-            // Customer Profile click
-            customerProfile.addEventListener('click', function() {
-                if (activeElement === 'customer') {
-                    hideAllSections();
-                    activeElement = null;
-                    customerProfile.classList.remove('active');
-                } else {
-                    hideAllSections();
-                    activeElement = 'customer';
-                    customerProfile.classList.add('active');
-                    valueProposition.classList.remove('active');
-                    
-                    // Show customer profile sections
-                    document.getElementById('customerJobs').classList.add('active');
-                    document.getElementById('pains').classList.add('active');
-                    document.getElementById('gains').classList.add('active');
-                }
-            });
-
-            // Close buttons
+            // Close panel handlers
             closeButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    hideAllSections();
-                    valueProposition.classList.remove('active');
-                    customerProfile.classList.remove('active');
-                    activeElement = null;
+                button.addEventListener('click', function() {
+                    closeAllPanels();
                 });
             });
 
-            // Close sections when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.canvas-element') && !e.target.closest('.section')) {
-                    hideAllSections();
-                    valueProposition.classList.remove('active');
-                    customerProfile.classList.remove('active');
-                    activeElement = null;
+            // Overlay click handler
+            overlay.addEventListener('click', function() {
+                closeAllPanels();
+            });
+
+            // ESC key handler
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeAllPanels();
                 }
             });
 
-            function hideAllSections() {
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
+            function closeAllPanels() {
+                iconItems.forEach(item => item.classList.remove('active'));
+                panels.forEach(panel => panel.classList.remove('active'));
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
-
-            // Prevent section clicks from bubbling to canvas
-            sections.forEach(section => {
-                section.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            });
         });
     </script>
 </body>

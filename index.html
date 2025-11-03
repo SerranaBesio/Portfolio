@@ -1,235 +1,213 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {  w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WG3437Q7");
-    </script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Serrana Besio - Portfolio</title>
-    <link rel="stylesheet" href="css/estilos.css" />
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WG3437Q7"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serrana Besio - Portfolio</title>
+  <link rel="icon" href="imagenes/logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != "dataLayer" ? "&l=" + l : "";
+      j.async = true;
+      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", "GTM-WG3437Q7");
+  </script>
+</head>
 
-    <header>
-      <div class="container">
-        <nav>
-          <a href="#" class="logo">SB</a>
-          <ul class="nav-links">
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#proceso">Proceso</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-          </ul>
-        </nav>
+<body>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WG3437Q7"
+            height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+  <!-- =========================================================
+       HEADER / NAVEGACIÓN
+  ========================================================= -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">SB</a>
+
+        <button class="menu-toggle" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links">
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">El detalle <br>que da sentido.</h1>
+      <h2 class="hero-subtitle">
+        Diseño digital con intención, claridad y propósito.
+      </h2>
+      <div class="hero-btn">
+        <a href="#proyectos" class="btn">Ver proyectos</a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <section id="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="hero-title">BLABLA</h1>
-          <p class="subtitle">
-            Diseñadora digital especializada en experiencias visuales
-            minimalistas y funcionales.
+  <!-- =========================================================
+       PROYECTOS
+  ========================================================= -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="proyectos-header">
+        <h2 class="proyectos-title">Proyectos.</h2>
+        <p class="subtitle">Una selección de trabajos recientes</p>
+      </div>
+      <div class="proyectos-grid" id="proyectos-grid">
+        <!-- Proyectos generados dinámicamente por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SOBRE MÍ
+  ========================================================= -->
+  <section id="sobre-mi" class="section">
+    <div class="container">
+      <div class="sobre-mi-header">
+        <h2 class="sobre-mi-title">Sobre mí.</h2>
+        <p class="subtitle">Te cuento mi camino y lo que me inspira día a día.</p>
+      </div>
+
+      <div class="sobre-mi-content">
+        <div class="sobre-mi-texto">
+          <p>¡Hola! por acá <strong>Serrana</strong>, diseñadora digital.</p>
+          <p>
+            Disfruto de transformar ideas en <strong>identidades visuales y experiencias digitales</strong>
+            simples, actuales y con propósito. Para mí, el diseño va más allá de lo estético:
+            se trata de conectar, comunicar y hacer que las cosas funcionen mejor.
           </p>
-          <div class="hero-btn">
-            <a href="#proyectos" class="btn">Ver proyectos</a>
+          <p>
+            Trabajo de cerca con cada proyecto, escuchando y buscando esa vuelta que hace que todo cobre sentido.
+            Me interesa lograr un equilibrio entre lo visual y lo funcional, con resultados que se sientan
+            <strong>auténticos y humanos</strong>.
+          </p>
+          <p>
+            Fuera de pantalla, me vas a encontrar viajando, saliendo a comer o entrenando.
+            Son mis momentos para desconectar y volver a inspirarme 💭
+          </p>
+        </div>
+
+        <div class="single-polaroid-container">
+          <div class="single-polaroid">
+            <img src="imagenes/perfil2.jpeg" alt="Serrana diseñadora digital">
+            <div class="polaroid-caption"></div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="proyectos">
-      <div class="container">
-        <div class="proyectos-header">
-          <h2 class="proyectos-title">Proyectos</h2>
-          <p class="subtitle">Una selección de trabajos recientes</p>
+  <!-- =========================================================
+       PROCESO
+  ========================================================= -->
+  <section id="proceso" class="proceso-seccion">
+    <div class="container">
+      <div class="proceso-encabezado">
+        <h1 class="proceso-titulo-principal">Proceso.</h1>
+        <p class="proceso-subtitulo">Un recorrido donde las ideas toman forma, paso a paso</p>
+      </div>
+
+      <div class="proceso-acordeon">
+        <!-- Cada bloque de proceso -->
+        <div class="proceso-item">
+          <button class="proceso-boton">
+            <span class="proceso-titulo"><span class="numero">01.</span> Conectar y entender</span>
+            <div class="proceso-icono"><div class="plus-icon"><div class="plus-line horizontal"></div><div class="plus-line vertical"></div></div></div>
+          </button>
+          <div class="proceso-contenido">
+            <p>Todo comienza con una conversación. Me contás qué querés lograr, qué te inspira y hacia dónde querés llevar tu marca o proyecto.</p>
+          </div>
+          <div class="proceso-divisor"></div>
         </div>
-        <div class="proyectos-grid" id="proyectos-grid">
-          <!-- tarjetas de proyecto -->
+
+        <div class="proceso-item">
+          <button class="proceso-boton">
+            <span class="proceso-titulo"><span class="numero">02.</span> Explorar y definir</span>
+            <div class="proceso-icono"><div class="plus-icon"><div class="plus-line horizontal"></div><div class="plus-line vertical"></div></div></div>
+          </button>
+          <div class="proceso-contenido">
+            <p>Traduzco tus ideas en propuestas visuales. Jugamos con colores, tipografías y estilos hasta encontrar una dirección que se sienta auténtica.</p>
+          </div>
+          <div class="proceso-divisor"></div>
+        </div>
+
+        <div class="proceso-item">
+          <button class="proceso-boton">
+            <span class="proceso-titulo"><span class="numero">03.</span> Diseñar y construir</span>
+            <div class="proceso-icono"><div class="plus-icon"><div class="plus-line horizontal"></div><div class="plus-line vertical"></div></div></div>
+          </button>
+          <div class="proceso-contenido">
+            <p>Con el rumbo definido, diseño la identidad o el sitio web cuidando cada detalle: estructura, equilibrio visual y coherencia con tu mensaje.</p>
+          </div>
+          <div class="proceso-divisor"></div>
+        </div>
+
+        <div class="proceso-item">
+          <button class="proceso-boton">
+            <span class="proceso-titulo"><span class="numero">04.</span> Ajustar y pulir</span>
+            <div class="proceso-icono"><div class="plus-icon"><div class="plus-line horizontal"></div><div class="plus-line vertical"></div></div></div>
+          </button>
+          <div class="proceso-contenido">
+            <p>Te muestro avances, escucho tu feedback y afinamos juntos hasta llegar a un resultado que te represente al 100%.</p>
+          </div>
+          <div class="proceso-divisor"></div>
+        </div>
+
+        <div class="proceso-item">
+          <button class="proceso-boton">
+            <span class="proceso-titulo"><span class="numero">05.</span> Lanzar y acompañar</span>
+            <div class="proceso-icono"><div class="plus-icon"><div class="plus-line horizontal"></div><div class="plus-line vertical"></div></div></div>
+          </button>
+          <div class="proceso-contenido">
+            <p>Te entrego los archivos finales y, si querés, te guío en los primeros pasos para aplicar tu nueva identidad o poner tu sitio online.</p>
+          </div>
+          <div class="proceso-divisor"></div>
         </div>
       </div>
-    </section>
-
-    <div class="proyectos-grid" id="proyectos-grid">
-      <!-- Los proyectos se generarán dinámicamente con JavaScript -->
     </div>
+  </section>
 
-
-    <section id="sobre-mi" class="section">
-        <div class="container">
-            <div class="sobre-mi-header">
-                <h2 class="sobre-mi-title">Sobre mí</h2>
-                <p class="subtitle">Conoce más sobre mi trayectoria y enfoque</p>
-            </div>
-            <div class="sobre-mi-content">
-                <div class="sobre-mi-texto">
-                    <p>
-                        Soy una diseñadora digital apasionada por crear experiencias visuales 
-                        minimalistas y funcionales que conecten con las personas. Mi enfoque 
-                        combina estética con funcionalidad, siempre buscando el equilibrio 
-                        perfecto entre forma y función.
-                    </p>
-                    <p>
-                        Con formación en diseño digital, me especializo en identidad visual, 
-                        diseño web y experiencias de usuario que no solo sean bellas, sino también 
-                        intuitivas y efectivas.
-                    </p>
-                </div>
-                        <img src="" alt="Foto de Serrana Besio">
-            </div>
-        </div>
-    </section>
-  
-    
-<!-- SECCIÓN PROCESO -->
-<section id="process" class="method-section">
-    <div class="container">
-        <div class="method-header">
-            <h1 class="method-main-title">Proceso de diseño</h1>
-            <p class="subtitle">Un recorrido donde las ideas toman forma, paso a paso</p>
-        </div>
-        
-        <div class="method-accordion">
-            <!-- Item 1 -->
-            <div class="method-accordion-item">
-                <button class="method-accordion-button">
-                    <span class="method-accordion-title">01. Conectar y entender</span>
-                    <div class="method-accordion-icon">
-                        <div class="plus-icon">
-                            <div class="plus-line horizontal"></div>
-                            <div class="plus-line vertical"></div>
-                        </div>
-                    </div>
-                </button>
-                <div class="method-accordion-content">
-                    <div class="method-accordion-description">
-                        <p>Todo comienza con una conversación. Me contás qué querés lograr, qué te inspira y hacia dónde querés llevar tu marca o proyecto.</p>
-                    </div>
-                </div>
-                <div class="method-divider"></div>
-            </div>
-            
-            <!-- Item 2 -->
-            <div class="method-accordion-item">
-                <button class="method-accordion-button">
-                    <span class="method-accordion-title">02. Explorar y definir</span>
-                    <div class="method-accordion-icon">
-                        <div class="plus-icon">
-                            <div class="plus-line horizontal"></div>
-                            <div class="plus-line vertical"></div>
-                        </div>
-                    </div>
-                </button>
-                <div class="method-accordion-content">
-                    <div class="method-accordion-description">
-                        <p>Traduzco tus ideas en propuestas visuales. Jugamos con colores, tipografías y estilos hasta encontrar una dirección que se sienta auténtica.</p>
-                    </div>
-                </div>
-                <div class="method-divider"></div>
-            </div>
-            
-            <!-- Item 3 -->
-            <div class="method-accordion-item">
-                <button class="method-accordion-button">
-                    <span class="method-accordion-title">03. Diseñar y construir</span>
-                    <div class="method-accordion-icon">
-                        <div class="plus-icon">
-                            <div class="plus-line horizontal"></div>
-                            <div class="plus-line vertical"></div>
-                        </div>
-                    </div>
-                </button>
-                <div class="method-accordion-content">
-                    <div class="method-accordion-description">
-                        <p>Con el rumbo definido, diseño la identidad o el sitio web cuidando cada detalle: estructura, equilibrio visual y coherencia con tu mensaje.</p>
-                    </div>
-                </div>
-                <div class="method-divider"></div>
-            </div>
-            
-            <!-- Item 4 -->
-            <div class="method-accordion-item">
-                <button class="method-accordion-button">
-                    <span class="method-accordion-title">04. Ajustar y pulir</span>
-                    <div class="method-accordion-icon">
-                        <div class="plus-icon">
-                            <div class="plus-line horizontal"></div>
-                            <div class="plus-line vertical"></div>
-                        </div>
-                    </div>
-                </button>
-                <div class="method-accordion-content">
-                    <div class="method-accordion-description">
-                        <p>Te muestro avances, escucho tu feedback y afinamos juntos hasta llegar a un resultado que te represente al 100%.</p>
-                    </div>
-                </div>
-                <div class="method-divider"></div>
-            </div>
-            
-
-             <!-- Item 5 -->
-             <div class="method-accordion-item">
-                <button class="method-accordion-button">
-                    <span class="method-accordion-title">05. Lanzar y acompañar</span>
-                    <div class="method-accordion-icon">
-                        <div class="plus-icon">
-                            <div class="plus-line horizontal"></div>
-                            <div class="plus-line vertical"></div>
-                        </div>
-                    </div>
-                </button>
-                <div class="method-accordion-content">
-                    <div class="method-accordion-description">
-                        <p>Te entrego los archivos finales y, si querés, te guío en los primeros pasos para aplicar tu nueva identidad o poner tu sitio online.</p>
-                    </div>
-                </div>
-                <div class="method-divider"></div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section id="contacto">
+  <!-- =========================================================
+       CONTACTO
+  ========================================================= -->
+  <section id="contacto">
     <div class="container">
       <div class="contact-header">
-        <h2 class="contact-title">Hablemos</h2>
-        <p class="contact-subtitle">
-          ¿Un nuevo proyecto en mente? Dejame tu contacto y te escribo pronto.
-        </p>
+        <h2 class="contact-title">Hablemos.</h2>
+        <p class="contact-subtitle">¿Tenes un nuevo proyecto en mente? Dejame tu contacto y te escribo pronto.</p>
       </div>
-  
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-        <!-- Campo oculto para Netlify -->
+
+      <form name="contact" method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="contact-form">
         <input type="hidden" name="form-name" value="contact" />
-  
-        <!-- Campo para bots -->
-        <p class="hidden">
-          <label>No llenar este campo: <input name="bot-field" /></label>
-        </p>
-  
+        <p class="hidden"><label>No llenar este campo: <input name="bot-field" /></label></p>
+
         <div class="form-row">
           <div class="form-group">
             <label for="name" class="form-label">Nombre</label>
@@ -240,49 +218,74 @@
             <input type="email" id="email" name="email" class="form-input" required />
           </div>
         </div>
-  
+
         <div class="form-actions">
           <button type="submit" class="submit-btn">Enviar</button>
+          <p class="form-error">Hubo un error. Por favor intenta nuevamente.</p>
         </div>
-  
-        <!-- Mensajes -->
-        <p class="form-success" style="display:none; color:green;">¡Gracias! Tu mensaje fue enviado.</p>
-        <p class="form-error" style="display:none; color:red;">Hubo un error. Por favor intenta nuevamente.</p>
       </form>
     </div>
   </section>
-  
-  
- 
-  
+
+  <!-- =========================================================
+       MODAL DE ÉXITO
+  ========================================================= -->
+  <div class="form-modal" id="formModal">
+    <div class="modal-content">
+      <div class="modal-icon">✓</div>
+      <h3 class="modal-title">¡Gracias!</h3>
+      <p class="modal-message">Tu mensaje fue enviado correctamente. Te contactaré pronto.</p>
+      <button class="modal-close" id="modalClose">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
   <footer id="footer">
     <div class="footer-container">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="#" class="logo">SB</a>
-            </div>
-
-            <nav class="footer-links">
-                <a href="porque.html" class="footer-link">Por qué</a>
-                <a href="https://www.linkedin.com/in/serrana-besio/" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="footer-link linkedin-link">
-                    LinkedIn
-                </a>
-            </nav>
+      <div class="footer-content">
+        <nav class="footer-links">
+          <a href="porque.html" class="footer-link">Por qué</a>
+          <a href="https://www.linkedin.com/in/serrana-besio/"
+             target="_blank" rel="noopener noreferrer"
+             class="footer-link linkedin-link">LinkedIn</a>
+        </nav>
+        <div class="footer-copy">
+          <p>&copy; 2025 Serrana Besio. Todos los derechos reservados.</p>
         </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 Serrana Besio. Todos los derechos reservados.</p>
-        </div>
+      </div>
     </div>
-</footer>
+  </footer>
 
+  <!-- =========================================================
+       BOTÓN FLOTANTE DE CONTACTO
+  ========================================================= -->
+  <div class="boton-contacto-flotante">
+    <input type="checkbox" id="toggle-contacto" class="toggle-contacto" />
 
-    <script src="js/utilidades.js"></script>
+    <label for="toggle-contacto" class="boton-contacto" aria-label="Abrir opciones de contacto">
+      <i class="fas fa-comment-dots"></i>
+      <span class="pulso"></span>
+    </label>
 
-    <script src="js/proyectos.js"></script>
-    <script src="js/detalle-proyectos.js"></script>
-  </body>
+    <div class="opciones-contacto">
+      <a href="https://wa.me/59898307535?text=Hola%20Serrana%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20tus%20servicios."
+         target="_blank" class="opcion-contacto whatsapp" title="Contactar por WhatsApp">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="mailto:besioserrana@gmail.com?subject=Quiero%20más%20info!&body=Hola%20Serrana%2C%20me%20gustar%C3%ADa%20conocer%20más%20sobre%20tu%20trabajo%20y%20los%20servicios%20que%20ofrec%C3%A9s.%0A%0A¡Gracias!"
+         class="opcion-contacto email" title="Enviar email">
+         <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SCRIPTS
+  ========================================================= -->
+  <script src="js/codigo.js" defer></script>
+  <script src="js/proyectos.js" defer></script>
+  <script src="js/detalle-proyectos.js" defer></script>
+</body>
 </html>

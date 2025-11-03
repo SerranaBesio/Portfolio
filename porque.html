@@ -1,610 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Value Proposition Canvas - Serrana Besio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #faf9f8;
-            color: #111;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #000;
-            text-decoration: none;
-            margin-bottom: 3rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border: 1px solid #000;
-            border-radius: 1.5rem;
-        }
-        
-        .back-button:hover {
-            background: #000;
-            color: #fff;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: #000;
-            line-height: 1.1;
-        }
-        
-        .page-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 4rem;
-            max-width: 600px;
-        }
-
-        /* Canvas Layout */
-        .canvas-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .canvas-side {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .canvas-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #000;
-        }
-
-        /* Icon Grid */
-        .icon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .icon-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .icon-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .icon-item.active {
-            transform: translateY(-5px);
-            border-color: currentColor;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .icon-item:hover .icon {
-            transform: scale(1.1);
-        }
-
-        .icon-item.active .icon {
-            transform: scale(1.2);
-        }
-
-        .icon-label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #000;
-        }
-
-        /* Content Panel */
-        .content-panel {
-            background: white;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            min-height: 400px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: absolute;
-            width: calc(100% - 4rem);
-            max-width: 800px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            z-index: 100;
-        }
-
-        .content-panel.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .panel-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid;
-        }
-
-        .panel-icon {
-            font-size: 2rem;
-        }
-
-        .panel-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #000;
-        }
-
-        .panel-content {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .content-item {
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.03);
-            border-radius: 8px;
-            border-left: 4px solid;
-            transition: transform 0.3s ease;
-        }
-
-        .content-item:hover {
-            transform: translateX(5px);
-        }
-
-        .content-item p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #666;
-            margin: 0;
-        }
-
-        .close-panel {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #666;
-            transition: color 0.3s ease;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-panel:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: #000;
-        }
-
-        /* Color Themes */
-        .value-proposition { color: #667eea; border-color: #667eea; }
-        .customer-profile { color: #f093fb; border-color: #f093fb; }
-        .gains { color: #4fd1c7; border-color: #4fd1c7; }
-        .products-services { color: #fc8181; border-color: #fc8181; }
-        .pain-relievers { color: #f6ad55; border-color: #f6ad55; }
-        .customer-jobs { color: #68d391; border-color: #68d391; }
-        .pains { color: #f687b3; border-color: #f687b3; }
-
-        /* Instructions */
-        .instructions {
-            text-align: center;
-            margin-top: 2rem;
-            color: #666;
-            font-size: 0.95rem;
-            font-style: italic;
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 99;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .canvas-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .content-panel {
-                width: calc(100% - 2rem);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1rem;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .icon-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .content-panel {
-                padding: 2rem 1.5rem;
-            }
-            
-            .panel-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .page-subtitle {
-                font-size: 1rem;
-            }
-            
-            .icon-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .icon-item {
-                padding: 1.25rem;
-            }
-            
-            .icon {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Volver al inicio</a>
-        
-        <h1>Value Proposition Canvas</h1>
-        <p class="page-subtitle">Explora cada elemento del canvas para entender cómo creo valor para tus proyectos.</p>
-
-        <div class="canvas-layout">
-            <!-- Value Proposition Side -->
-            <div class="canvas-side">
-                <h2 class="canvas-title">Value Proposition</h2>
-                <div class="icon-grid">
-                    <div class="icon-item value-proposition" data-target="valueProposition">
-                        <div class="icon">💎</div>
-                        <div class="icon-label">Value Proposition</div>
-                    </div>
-                    
-                    <div class="icon-item gains" data-target="gains">
-                        <div class="icon">🚀</div>
-                        <div class="icon-label">Gains</div>
-                    </div>
-                    
-                    <div class="icon-item products-services" data-target="productsServices">
-                        <div class="icon">🛠️</div>
-                        <div class="icon-label">Products & Services</div>
-                    </div>
-                    
-                    <div class="icon-item pain-relievers" data-target="painRelievers">
-                        <div class="icon">🛡️</div>
-                        <div class="icon-label">Pain Relievers</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Customer Profile Side -->
-            <div class="canvas-side">
-                <h2 class="canvas-title">Customer Profile</h2>
-                <div class="icon-grid">
-                    <div class="icon-item customer-profile" data-target="customerProfile">
-                        <div class="icon">👥</div>
-                        <div class="icon-label">Customer Profile</div>
-                    </div>
-                    
-                    <div class="icon-item customer-jobs" data-target="customerJobs">
-                        <div class="icon">🎯</div>
-                        <div class="icon-label">Customer Jobs</div>
-                    </div>
-                    
-                    <div class="icon-item pains" data-target="pains">
-                        <div class="icon">😥</div>
-                        <div class="icon-label">Pains</div>
-                    </div>
-                    
-                    <div class="icon-item gains" data-target="customerGains">
-                        <div class="icon">⭐</div>
-                        <div class="icon-label">Gains</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Content Panels -->
-        <div class="overlay" id="overlay"></div>
-
-        <!-- Value Proposition Panel -->
-        <div class="content-panel value-proposition" id="valuePropositionPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">💎</div>
-                <h2 class="panel-title">Value Proposition</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Creo experiencias digitales minimalistas y funcionales que conectan marcas con su audiencia</p>
-                </div>
-                <div class="content-item">
-                    <p>Combino estética moderna con usabilidad para generar resultados tangibles</p>
-                </div>
-                <div class="content-item">
-                    <p>Enfoque centrado en el usuario que prioriza la experiencia y la conversión</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gains Panel -->
-        <div class="content-panel gains" id="gainsPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">🚀</div>
-                <h2 class="panel-title">Gain Creators</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Facilitar la toma de decisiones con resultados visuales atractivos y claros</p>
-                </div>
-                <div class="content-item">
-                    <p>Ofrecer una experiencia que refleja organización, claridad y estética aplicada</p>
-                </div>
-                <div class="content-item">
-                    <p>Contacto fácil que acelera el inicio de colaboraciones productivas</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Products & Services Panel -->
-        <div class="content-panel products-services" id="productsServicesPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">🛠️</div>
-                <h2 class="panel-title">Products & Services</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Portfolio online para visualizar proyectos y procesos de diseño</p>
-                </div>
-                <div class="content-item">
-                    <p>Formulario de contacto directo para consultas o solicitudes de trabajo</p>
-                </div>
-                <div class="content-item">
-                    <p>Creación de sitios web funcionales y personalizados</p>
-                </div>
-                <div class="content-item">
-                    <p>Diseño de identidad visual e imagen de marca completa</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pain Relievers Panel -->
-        <div class="content-panel pain-relievers" id="painRelieversPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">🛡️</div>
-                <h2 class="panel-title">Pain Relievers</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Navegación simple e intuitiva que facilita la exploración del portfolio</p>
-                </div>
-                <div class="content-item">
-                    <p>Explicación clara y accesible de servicios, habilidades y procesos</p>
-                </div>
-                <div class="content-item">
-                    <p>Muestra de trabajos realizados que genera confianza y seguridad</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Customer Profile Panel -->
-        <div class="content-panel customer-profile" id="customerProfilePanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">👥</div>
-                <h2 class="panel-title">Customer Profile</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Emprendedores y pequeñas empresas que buscan mejorar su presencia digital</p>
-                </div>
-                <div class="content-item">
-                    <p>Profesionales que necesitan un sitio web o identidad visual profesional</p>
-                </div>
-                <div class="content-item">
-                    <p>Clientes que valoran el diseño limpio, funcional y efectivo</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Customer Jobs Panel -->
-        <div class="content-panel customer-jobs" id="customerJobsPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">🎯</div>
-                <h2 class="panel-title">Customer Jobs</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Encontrar un diseñador confiable con estilo acorde a su marca o emprendimiento</p>
-                </div>
-                <div class="content-item">
-                    <p>Contratar a alguien que pueda crear un sitio web o identidad visual funcional y atractiva</p>
-                </div>
-                <div class="content-item">
-                    <p>Mejorar la presencia digital de manera profesional y efectiva</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pains Panel -->
-        <div class="content-panel pains" id="painsPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">😥</div>
-                <h2 class="panel-title">Pains</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>No entender los contenidos del sitio o las habilidades técnicas del diseñador</p>
-                </div>
-                <div class="content-item">
-                    <p>Perder tiempo buscando a la persona adecuada para el proyecto</p>
-                </div>
-                <div class="content-item">
-                    <p>Falta de claridad en la información o procesos de trabajo</p>
-                </div>
-                <div class="content-item">
-                    <p>No tener referencia de precios o alcance de servicios</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Customer Gains Panel -->
-        <div class="content-panel gains" id="customerGainsPanel">
-            <button class="close-panel">×</button>
-            <div class="panel-header">
-                <div class="panel-icon">⭐</div>
-                <h2 class="panel-title">Customer Gains</h2>
-            </div>
-            <div class="panel-content">
-                <div class="content-item">
-                    <p>Obtener un sitio web funcional y estéticamente atractivo</p>
-                </div>
-                <div class="content-item">
-                    <p>Mejorar la presencia digital y el valor percibido de su marca</p>
-                </div>
-                <div class="content-item">
-                    <p>Sentir confianza en el proceso de diseño y comunicación</p>
-                </div>
-                <div class="content-item">
-                    <p>Encontrar una experiencia simple, humana y eficaz al contratar</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="instructions">
-            💡 Haz clic en cualquier icono para explorar su contenido
-        </div>
-    </div>
-
+  <head>
+    <!-- Google Tag Manager -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const iconItems = document.querySelectorAll('.icon-item');
-            const panels = document.querySelectorAll('.content-panel');
-            const closeButtons = document.querySelectorAll('.close-panel');
-            const overlay = document.getElementById('overlay');
-
-            // Icon click handler
-            iconItems.forEach(icon => {
-                icon.addEventListener('click', function() {
-                    const target = this.getAttribute('data-target');
-                    
-                    // Remove active class from all icons and panels
-                    iconItems.forEach(item => item.classList.remove('active'));
-                    panels.forEach(panel => panel.classList.remove('active'));
-                    
-                    // Add active class to clicked icon and corresponding panel
-                    this.classList.add('active');
-                    document.getElementById(target + 'Panel').classList.add('active');
-                    overlay.classList.add('active');
-                    
-                    // Prevent body scroll
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-
-            // Close panel handlers
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    closeAllPanels();
-                });
-            });
-
-            // Overlay click handler
-            overlay.addEventListener('click', function() {
-                closeAllPanels();
-            });
-
-            // ESC key handler
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeAllPanels();
-                }
-            });
-
-            function closeAllPanels() {
-                iconItems.forEach(item => item.classList.remove('active'));
-                panels.forEach(panel => panel.classList.remove('active'));
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
+      (function (w, d, s, l, i) {  w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WG3437Q7");
     </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serrana Besio - Portfolio</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="icon" href="imagenes/logo.png" type="image/x-icon" />
+
+  </head>
+
+<body>
+    <header>
+        <div class="container">
+          <nav>
+            <a href="index.html" class="logo">SB</a>
+            <ul class="nav-links">
+              <li><a href="index.html#proyectos">Proyectos</a></li>
+              <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+              <li><a href="index.html#process">Proceso</a></li>
+              <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  
+      <!-- SECCIÓN VALUE PROPOSITION CANVAS -->
+      <section id="value-canvas">
+        <div class="container">
+          <div class="section-header">
+            <h1 class="section-title">Value proposition canvas</h1>
+            <p class="section-subtitle">
+              El sitio busca ser el primer punto de contacto con potenciales clientes y colegas, mostrar los trabajos y procesos de forma clara y atractiva.La idea es proponer una experiencia que capte la atención desde el inicio y refleje el estilo de diseño: cercano, actual y fácil de entender.
+            </p>
+          </div>
+  
+          <div class="value-grid">
+            <!-- Bloque 1: Propuesta de Valor -->
+            <div class="value-block">
+              <h3 class="value-title">Propuesta de valor</h3>
+          
+              <div class="value-accordion">
+          
+                <div class="value-accordion-item">
+                  <button class="value-accordion-button">
+                    Productos y servicios
+                    <div class="plus-icon">
+                      <div class="plus-line horizontal"></div>
+                      <div class="plus-line vertical"></div>
+                    </div>
+                  </button>
+                  <div class="value-accordion-content">
+                    <ul>
+                      <li>Portfolio online para visualizar proyectos y procesos de diseño.</li>
+                      <li>Formulario de contacto para consultas o solicitudes de trabajo.</li>
+                      <li>El sitio funciona como canal de contacto directo con potenciales clientes o colaboradores.</li>
+                    </ul>
+                  </div>
+                </div>
+          
+                <div class="value-accordion-item">
+                  <button class="value-accordion-button">
+                    Pain relievers
+                    <div class="plus-icon">
+                      <div class="plus-line horizontal"></div>
+                      <div class="plus-line vertical"></div>
+                    </div>
+                  </button>
+                  <div class="value-accordion-content">
+                    <ul>
+                      <li>Navegación simple e intuitiva que facilita la exploración.</li>
+                      <li>Explicación clara y accesible de los servicios y procesos.</li>
+                      <li>Muestra de trabajos realizados que genera confianza y transparencia.</li>
+                    </ul>
+                  </div>
+                </div>
+          
+                <div class="value-accordion-item">
+                  <button class="value-accordion-button">
+                    Gain creators
+                    <div class="plus-icon">
+                      <div class="plus-line horizontal"></div>
+                      <div class="plus-line vertical"></div>
+                    </div>
+                  </button>
+                  <div class="value-accordion-content">
+                    <ul>
+                      <li>Facilita la toma de decisiones al mostrar de forma visual y atractiva los resultados del trabajo.</li>
+                      <li>Ofrece una experiencia agradable que refleja cómo sería trabajar con la diseñadora: organización, claridad y estética.</li>
+                      <li>Permite contactar fácilmente, acelerando el inicio de una colaboración.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Bloque 2: Perfil del Cliente -->
+            <div class="value-block">
+              <h3 class="value-title">Perfil del cliente</h3>
+          
+              <div class="value-accordion">
+          
+                <div class="value-accordion-item">
+                  <button class="value-accordion-button">
+                    Customer jobs
+                    <div class="plus-icon">
+                      <div class="plus-line horizontal"></div>
+                      <div class="plus-line vertical"></div>
+                    </div>
+                  </button>
+                  <div class="value-accordion-content">
+                    <ul>
+                      <li>Encontrar un diseñador confiable, con estilo acorde a su marca o emprendimiento.</li>
+                      <li>Contratar a alguien que pueda crear un sitio web o identidad visual funcional y atractiva.</li>
+                    </ul>
+                  </div>
+                </div>
+          
+                <div class="value-accordion-item">
+                  <button class="value-accordion-button">
+                    Pains
+                    <div class="plus-icon">
+                      <div class="plus-line horizontal"></div>
+                      <div class="plus-line vertical"></div>
+                    </div>
+                  </button>
+                  <div class="value-accordion-content">
+                    <ul>
+                      <li>No entender los contenidos del sitio o las habilidades técnicas del diseñador.</li>
+                      <li>Perder tiempo buscando a la persona adecuada.</li>
+                      <li>Falta de claridad en la información o procesos.</li>
+                    </ul>
+                  </div>
+                </div>
+          
+                <div class="value-accordion-item">
+                  <button class="value-accordion-button">
+                    Gains
+                    <div class="plus-icon">
+                      <div class="plus-line horizontal"></div>
+                      <div class="plus-line vertical"></div>
+                    </div>
+                  </button>
+                  <div class="value-accordion-content">
+                    <ul>
+                      <li>Obtener un sitio web funcional y estéticamente atractivo.</li>
+                      <li>Mejorar la presencia digital y el valor percibido de su marca.</li>
+                      <li>Sentir confianza en el proceso de diseño y comunicación con la profesional.</li>
+                      <li>Encontrar una experiencia simple, humana y eficaz al contratar a la diseñadora.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+  
+          <a href="index.html" class="btn">← Volver</a>
+        </div>
+      </section>
+  
+
+  
+      <footer id="footer">
+        <div class="footer-container">
+          <div class="footer-content">
+            <nav class="footer-links">
+              <a href="index.html" class="footer-link">Inicio</a>
+              <a href="https://www.linkedin.com/in/serrana-besio/"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="footer-link linkedin-link">
+                LinkedIn
+              </a>
+            </nav>
+      
+            <div class="footer-copy">
+              <p>&copy; 2025 Serrana Besio. Todos los derechos reservados.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+
+
+
+
+
+
+
+
+<script src="js/value-canvas.js"></script>
+
+
 </body>
-</html>

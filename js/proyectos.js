@@ -1,290 +1,113 @@
-// Base de datos con info para lista y detalle
+// ---------------------------------------------------------
+// BASE DE DATOS DE PROYECTOS
+// ---------------------------------------------------------
 const proyectos = [
-  
-  {
-    id: 2,
-    nombre: "E-commerce Blau",
-    enlaceDemo:"https://rococo-sherbet-d9d436.netlify.app/",
-    categoria: "Diseño Web",
-    descripcion:
-      "Desarrollo de identidad visual completa para marca de moda sostenible.",
-    imagen: "imagenes/blau-mockup.png",
-
-    // Info extendida
-    descripcionCorta:
-      "Desarrollo de identidad visual completa para marca de moda sostenible.",
-
-    cliente: "Proyecto Universidad ORT",
-    año: "2025",
-
-    imagenes: ["imagenes/blau-mockup.png", "imagenes/blau-mockup-cel.png"],
-  },
-   {
-    id: 4,
-    nombre: "Diseño libro juseca",
-    categoria: "Diseño editorial",
-    descripcion:
-      "Diseño de interfaz y experiencia de usuario para aplicación de delivery.",
-    imagen: "imagenes/juceca.png",
-
-    // Info extendida
-    descripcionCorta:
-      "Diseño de interfaz y experiencia de usuario para aplicación de delivery.",
-
-    cliente: "Proyecto Universidad ORT",
-    año: "2025",
-    imagenes: ["proyecto3-1.jpg", "proyecto3-2.jpg", "proyecto3-3.jpg"],
-  },
- 
-  {
-    id: 6,
-    nombre: "Rediseño de vinilo de Rada",
-    categoria: "Identidad visual",
-    descripcion:
-      "Diseño de interfaz y experiencia de usuario para aplicación de delivery.",
-    imagen: "imagenes/mockup disco.png",
-
-    // Info extendida
-    descripcionCorta:
-      "Diseño de interfaz y experiencia de usuario para aplicación de delivery.",
-
-    cliente: "Proyecto Universidad ORT",
-    año: "2024",
-    imagenes: ["imagenes/rada.png", "proyecto3-2.jpg", "proyecto3-3.jpg"],
-  },
+    {
+        id: 2,
+        nombre: "E-commerce Blau",
+        categoria: "Diseño Web",
+        enlaceDemo: "https://rococo-sherbet-d9d436.netlify.app/",
+        imagen: "imagenes/blau-mockup.png",
+        descripcionCorta: "Blau es un proyecto enfocado en el diseño y desarrollo de un sitio e-commerce responsivo para una marca de accesorios ficticia. El objetivo fue crear una experiencia de compra clara, intuitiva y visualmente atractiva, cuidando tanto la funcionalidad como la estética. El proceso incluyó la definición de la identidad visual de la marca, la selección de una paleta de colores suave y contemporánea, y la creación de una interfaz limpia que resalte los productos sin distraer al usuario. Se priorizó una navegación fluida, un diseño adaptable y una estructura visual equilibrada que refleje los valores de simplicidad, elegancia y sostenibilidad de la marca.",
+        cliente: "Proyecto Universidad ORT",
+        año: "2025",
+        imagenes: ["imagenes/blau-mockup.png", "imagenes/blau-mockup-cel.png"],
+    },
+    {
+        id: 4,
+        nombre: "Diseño libro Juceca",
+        categoria: "Diseño editorial",
+        imagen: "imagenes/juceca.png",
+        descripcionCorta: "Proyecto realizado para la materia Diseño 3, basado en la lectura y análisis de la obra de Juceca. A partir de la exploración del autor y su universo literario, se desarrolló un concepto visual bajo el título “Historias para no creer”, que busca reflejar el tono absurdo, humorístico y exagerado característico de sus relatos. El diseño propone un enfoque disparatado y expresivo, con ilustraciones de colores vibrantes y composiciones intencionalmente exageradas, evocando el carácter fantástico y surreal de las historias. La intención principal fue reinterpretar el espíritu lúdico de Juceca y acercar su obra a un público más joven, utilizando un lenguaje visual contemporáneo que combina ironía, dinamismo y frescura.",
+        cliente: "Proyecto Universidad ORT",
+        año: "2025",
+        imagenes: ["imagenes/juceca.png", "imagenes/juceca2.png", "imagenes/marcalibro.png", "imagenes/juceca4.png"],
+    },
+    {
+        id: 6,
+        nombre: "Diseño de vinilo",
+        categoria: "Identidad visual",
+        enlaceDemo: "https://helpful-kashata-a97aab.netlify.app/",
+        imagen: "imagenes/rada1.png",
+        descripcionCorta: "Proyecto de disco de vinilo realizado en el marco de la materia Diseño 3. Tras analizar canciones de Rubén Rada, se detectaron conceptos recurrentes como amor, felicidad, identidad y candombe. Se eligen estos últimos dos como núcleo al reflejar con mayor fuerza su universo cultural y musical. De esta unión surge el concepto “Origen”, que integra al candombe como raíz rítmica y la identidad como manifestación individual y colectiva. De esta manera, se pone en evidencia su papel central en la obra y vida del artista. Esta reinterpretación propone un cruce entre patrimonio nacional e identidad afro-uruguaya, que celebra a Rada como figura clave del candombe y de la cultura uruguaya contemporánea. Además, el proyecto incluye un desarrollo web que complementa la propuesta visual y sonora.",
+        cliente: "Proyecto Universidad ORT",
+        año: "2024",
+        imagenes: ["imagenes/rada1.png", "imagenes/rada2.png"],
+    },
 ];
 
-// Función para generar proyectos en la grid principal - VERSIÓN MINIMALISTA
+// ---------------------------------------------------------
+// FUNCIÓN PRINCIPAL: GENERAR PROYECTOS EN LA GRID
+// ---------------------------------------------------------
 function generarProyectos() {
-    const grid = document.getElementById("proyectos-grid");
-    grid.innerHTML = ""; // Limpiar antes de generar
-  
-    // Tomar solo los primeros 3 proyectos
-    const proyectosLimitados = proyectos.slice(0, 3);
-  
-    proyectosLimitados.forEach((proyecto, index) => {
-      const proyectoHTML = `
-              <div class="proyecto-card fade-in" style="animation-delay: ${
-                0.3 + index * 0.1
-              }s" data-proyecto-id="${proyecto.id}">
-                  <img src="${proyecto.imagen}" alt="${proyecto.nombre}" class="proyecto-imagen">
-                  <div class="proyecto-info">
-                      <h3 class="proyecto-nombre">${proyecto.nombre}</h3>
-                  </div>
-              </div>
-          `;
-  
-      grid.innerHTML += proyectoHTML;
-    });
-  
-    // Agregar event listeners a las cards
-    document.querySelectorAll(".proyecto-card").forEach((card) => {
-      card.addEventListener("click", function () {
-        const proyectoId = this.getAttribute("data-proyecto-id");
-        mostrarDetalleProyecto(proyectoId);
-      });
-    });
-  }
-function generarHTMLDetalle(proyectoId) {
-  const proyecto = proyectos.find((p) => p.id == proyectoId);
-  const proyectoIndex = proyectos.findIndex((p) => p.id == proyectoId);
-  const proyectoAnterior = proyectos[proyectoIndex - 1];
-  const proyectoSiguiente = proyectos[proyectoIndex + 1];
+    const grid = document.getElementById('proyectos-grid');
+    if (!grid) return;
 
-  return `
-        <div class="project-detail-grid">
-            <!-- Fila 1: Título y Enlace -->
-            <div class="project-title-section">
-                <h1 class="project-hero-title">${proyecto.nombre}</h1>
-                <div class="project-link-section">
-                    <a href="${
-                      proyecto.enlaceDemo
-                    }" target="_blank" class="btn btn-primary">
-                        🌐 Visitar sitio web
-                    </a>
+    grid.innerHTML = '';
+
+    // Mostrar solo los primeros 3 proyectos
+    const proyectosLimitados = proyectos.slice(0, 3);
+
+    proyectosLimitados.forEach((proyecto, index) => {
+        grid.insertAdjacentHTML('beforeend', `
+            <div class="proyecto-card fade-in" 
+                 style="animation-delay: ${0.3 + index * 0.1}s" 
+                 data-proyecto-id="${proyecto.id}">
+                <img src="${proyecto.imagen}" 
+                     alt="${proyecto.nombre}" 
+                     class="proyecto-imagen">
+                <div class="proyecto-info">
+                    <h3 class="proyecto-nombre">${proyecto.nombre}</h3>
                 </div>
             </div>
+        `);
+    });
 
-            <!-- Fila 2: Imágenes 1 y 2 -->
-            <div class="image-grid-item">
-                <img src="${proyecto.imagenes[0]}" alt="${
-    proyecto.nombre
-  } - Imagen 1" class="project-image-large">
-            </div>
-            <div class="image-grid-item">
-                <img src="${proyecto.imagenes[1]}" alt="${
-    proyecto.nombre
-  } - Imagen 2" class="project-image-large">
-            </div>
-
-            <!-- Fila 3: Imágenes 3 y 4 -->
-            <div class="image-grid-item">
-                <img src="${proyecto.imagenes[2]}" alt="${
-    proyecto.nombre
-  } - Imagen 3" class="project-image-large">
-            </div>
-            <div class="image-grid-item">
-                <img src="${proyecto.imagenes[3]}" alt="${
-    proyecto.nombre
-  } - Imagen 4" class="project-image-large">
-            </div>
-
-            <!-- Fila 4: Descripción del proyecto (ancho completo) -->
-            <div class="project-description-full">
-                <h3>Proyecto</h3>
-                ${
-                  proyecto.descripcionCompleta ||
-                  proyecto.descripcionCompleta ||
-                  `
-                    <p>${proyecto.descripcionCorta || proyecto.descripcion}</p>
-             
-                `
-                }
-            </div>
-
-            <!-- Fila 5: Navegación entre proyectos -->
-            <div class="project-navigation">
-                ${
-                  proyectoAnterior
-                    ? `
-                    <button class="nav-btn prev" onclick="mostrarDetalleProyecto(${proyectoAnterior.id})">
-                        Anterior
-                    </button>
-                `
-                    : "<div></div>"
-                }
-                
-                ${
-                  proyectoSiguiente
-                    ? `
-                    <button class="nav-btn next" onclick="mostrarDetalleProyecto(${proyectoSiguiente.id})">
-                        Siguiente
-                    </button>
-                `
-                    : "<div></div>"
-                }
-            </div>
-
-            <!-- Fila 6: Botón volver -->
-            <div class="project-back-section">
-                <button class="btn btn-secondary" onclick="volverAProyectos()">
-                    ← Volver a todos los proyectos
-                </button>
-            </div>
-        </div>
-    `;
-}
-function cambiarImagenPrincipal(proyectoId, imagenSrc) {
-  const imagenPrincipal = document.getElementById(
-    `imagen-principal-${proyectoId}`
-  );
-  const miniaturas = document.querySelectorAll(
-    `.gallery-thumbnails .thumbnail`
-  );
-
-  // Cambiar imagen principal
-  imagenPrincipal.src = imagenSrc;
-
-  // Actualizar miniaturas activas
-  miniaturas.forEach((miniatura) => {
-    miniatura.classList.remove("active");
-    if (miniatura.querySelector("img").src.includes(imagenSrc)) {
-      miniatura.classList.add("active");
-    }
-  });
+    // Asignar eventos a las tarjetas
+    document.querySelectorAll('.proyecto-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const proyectoId = card.dataset.proyectoId;
+            mostrarDetalleProyecto(proyectoId);
+        });
+    });
 }
 
-// Función para mostrar el detalle del proyecto
+// ---------------------------------------------------------
+// MOSTRAR DETALLE DEL PROYECTO SELECCIONADO
+// ---------------------------------------------------------
 function mostrarDetalleProyecto(proyectoId) {
-  // Ocultar secciones principales
-  document.getElementById("hero").style.display = "none";
-  document.getElementById("proyectos").style.display = "none";
+    // Ocultar secciones principales
+    ['hero', 'proyectos', 'sobre-mi', 'proceso'].forEach(id => {
+        const seccion = document.getElementById(id);
+        if (seccion) seccion.style.display = 'none';
+    });
 
-  // Crear y mostrar sección de detalle
-  const detalleHTML = generarHTMLDetalle(proyectoId);
+    // Eliminar detalle anterior si existe
+    const detalleExistente = document.getElementById('proyecto-detalle');
+    if (detalleExistente) detalleExistente.remove();
 
-  // Si ya existe la sección de detalle, removerla
-  const existingDetalle = document.getElementById("proyecto-detalle");
-  if (existingDetalle) {
-    existingDetalle.remove();
-  }
+    // Crear nueva sección de detalle
+    const detalleSection = document.createElement('section');
+    detalleSection.id = 'proyecto-detalle';
+    detalleSection.innerHTML = generarHTMLDetalle(proyectoId);
 
-  // Crear nueva sección de detalle
-  const detalleSection = document.createElement("section");
-  detalleSection.id = "proyecto-detalle";
-  detalleSection.innerHTML = detalleHTML;
-
-  // Insertar después del header
-  document.body.insertBefore(detalleSection, document.getElementById("hero"));
-
-  // Scroll to top
-  window.scrollTo(0, 0);
-}
-
-// Función para navegar a la página principal
-function navegarAInicio() {
-  const detalleSection = document.getElementById("proyecto-detalle");
-  if (detalleSection) {
-    detalleSection.remove();
-  }
-
-  // Mostrar secciones principales
-  document.getElementById("hero").style.display = "flex";
-  document.getElementById("proyectos").style.display = "block";
-
-  // Scroll to top
-  window.scrollTo(0, 0);
-}
-
-// Función para volver a proyectos
-function volverAProyectos() {
-  navegarAInicio();
-
-  // Hacer scroll a la sección de proyectos
-  setTimeout(() => {
-    const proyectosSection = document.getElementById("proyectos");
-    if (proyectosSection) {
-      proyectosSection.scrollIntoView({ behavior: "smooth" });
+    // Insertar antes del contacto
+    const contactoSection = document.getElementById('contacto');
+    if (contactoSection) {
+        document.body.insertBefore(detalleSection, contactoSection);
+    } else {
+        document.body.appendChild(detalleSection);
     }
-  }, 100);
+
+    // Forzar header con fondo activo (blanco)
+    const header = document.querySelector('header');
+    if (header) header.classList.add('scrolled');
+
+    // Scroll hacia arriba suave
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Función para manejar clicks en el header
-function configurarNavegacionHeader() {
-  // Logo - llevar a inicio
-  const logo = document.querySelector(".logo");
-  if (logo) {
-    logo.addEventListener("click", function (e) {
-      e.preventDefault();
-      navegarAInicio();
-    });
-  }
-
-  // Enlaces del menú - llevar a inicio y luego a la sección
-  document.querySelectorAll(".nav-links a").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetSection = this.getAttribute("href").replace("#", "");
-
-      // Primero volver al inicio
-      navegarAInicio();
-
-      // Después de un pequeño delay, hacer scroll a la sección
-      setTimeout(() => {
-        const section = document.getElementById(targetSection);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    });
-  });
-}
-
-// Inicializar cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", function () {
-  configurarNavegacionHeader();
-  generarProyectos();
-});
-
-
-
+// ---------------------------------------------------------
+// INICIALIZAR GRID DE PROYECTOS AL CARGAR EL DOM
+// ---------------------------------------------------------
+document.addEventListener('DOMContentLoaded', generarProyectos);
